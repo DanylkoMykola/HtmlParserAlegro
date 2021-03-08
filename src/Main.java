@@ -5,9 +5,7 @@ import pojo.Item;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,7 +27,7 @@ public class Main {
         executor.shutdown();
 
         String home = System.getProperty("user.home");
-        Path path = Paths.get(home, "Desktop", "DanylkoHtmlParser.csv");
+        Path path = Paths.get(home, "Desktop", "AlegroHtmlParserDanylko.csv");
         File cvsFile = new File(path.toString());
         try {
             PrintWriter writer = new PrintWriter(cvsFile);
