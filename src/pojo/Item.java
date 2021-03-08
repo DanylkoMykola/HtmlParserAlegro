@@ -61,17 +61,19 @@ public class Item {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> pair : characteristics.entrySet()){
-            sb.append(pair.getKey());
-            sb.append(": ");
-            sb.append(pair.getValue());
-            sb.append(";");
+        if (characteristics != null) {
+            for (Map.Entry<String, String> pair : characteristics.entrySet()) {
+                sb.append(pair.getKey());
+                sb.append(": ");
+                sb.append(pair.getValue());
+                sb.append(";");
+            }
         }
         return name + ';' +
                 link + ';' +
                 fullPrice + ';' +
                 discount + ';' +
                 discountPrice + ';' +
-                sb;
+                sb.toString();
     }
 }

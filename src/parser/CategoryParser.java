@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
-public class CategoryParser implements HtmlParser{
+public class CategoryParser implements HtmlParser {
 
     private static final String mainDiv = ".mx7m_1.mnyp_co.mlkp_ag";
     private static final String linkSelector = "._w7z6o._uj8z7.meqh_en.mpof_z0.mqu1_16._9c44d_2vTdY";
@@ -30,7 +31,7 @@ public class CategoryParser implements HtmlParser{
         items = new ArrayList<>();
     }
 
-    public synchronized List<Item> getItemsFromHtml() {
+    public List<Item> call() {
         int n = 1;
         while (items.size() < 100) {
             try {
@@ -60,6 +61,7 @@ public class CategoryParser implements HtmlParser{
                 e.printStackTrace();
             }
             url = HtmlParser.super.nextPage(url);
+            System.out.println(n++);
         }
         return items;
     }
