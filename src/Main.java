@@ -3,6 +3,8 @@ import parser.HtmlParser;
 import pojo.Item;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,10 @@ public class Main {
         Future<List<Item>> itemCoffeeFutuer = executor.submit(coffeeCategory);
 
         executor.shutdown();
-        /*List<Item> itemsComp = compCategory.getItemsFromHtml();
-        List<Item> itemsCosmetic = cosmeticCategory.getItemsFromHtml();
-        List<Item> itemsCoffee = coffeeCategory.getItemsFromHtml();*/
 
-        File cvsFile = new File("C:\\Users\\Mykola\\Desktop\\DanylkoHtmlParser.csv");
+        String home = System.getProperty("user.home");
+        Path path = Paths.get(home, "Desktop", "DanylkoHtmlParser.csv");
+        File cvsFile = new File(path.toString());
         try {
             PrintWriter writer = new PrintWriter(cvsFile);
             StringBuilder sb = new StringBuilder();
@@ -50,11 +51,11 @@ public class Main {
             sb.append("Characteristic");
             sb.append("\n\nKomputery");
             writer.println(sb.toString());
-            itemsComp.forEach(writer::println);
+            itemsComp.stream().limit(100).forEach(writer::println);
             writer.println("\nHigiena jamy ustnej");
-            itemsCosmetic.forEach(writer::println);
+            itemsCosmetic.stream().limit(100).forEach(writer::println);
             writer.println("\nProdukty spozywcze kawa");
-            itemsCoffee.forEach(writer::println);
+            itemsCoffee.stream().limit(100).forEach(writer::println);
 
             writer.close();
         } catch (FileNotFoundException | InterruptedException | ExecutionException e) {

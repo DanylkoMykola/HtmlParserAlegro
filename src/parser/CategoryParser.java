@@ -32,7 +32,6 @@ public class CategoryParser implements HtmlParser {
     }
 
     public List<Item> call() {
-        int n = 1;
         while (items.size() < 100) {
             try {
                 Document doc = Jsoup.connect(url).userAgent(userAgent).timeout(timeout).get();
@@ -60,8 +59,8 @@ public class CategoryParser implements HtmlParser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println("Extract from url: " + url);
             url = HtmlParser.super.nextPage(url);
-            System.out.println(n++);
         }
         return items;
     }
