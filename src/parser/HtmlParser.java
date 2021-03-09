@@ -3,13 +3,12 @@ package parser;
 import pojo.Item;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
-public interface HtmlParser extends Callable<List<Item>> {
+public interface HtmlParser {
      String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36";
      int timeout = 10 * 1000;
 
-     //List<Item> getItemsFromHtml();
+     List<Item> getItemsFromHtml();
 
      default String nextPage(String url) {
           String result;
