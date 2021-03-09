@@ -59,14 +59,6 @@ public class CategoryParser implements HtmlParser {
                 e.printStackTrace();
             }
             System.out.println("Extract from url: " + url);
-
-            //Slows down the thread because the server produces Status code 429
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             url = HtmlParser.super.nextPage(url);
         }
         return items;
