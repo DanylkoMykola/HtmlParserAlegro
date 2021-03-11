@@ -18,7 +18,6 @@ public class Main {
         List<Item> itemsCosmetic = cosmeticCategory.getItemsFromHtml();
         List<Item> itemsCoffee = coffeeCategory.getItemsFromHtml();
 
-
         try {
             String home = System.getProperty("user.home");
             Path path = Paths.get(home, "Desktop", "AlegroHtmlParserDanylko.csv");
@@ -26,7 +25,6 @@ public class Main {
 
             PrintWriter writer = new PrintWriter(cvsFile);
             StringBuilder sb = new StringBuilder();
-
 
             sb.append("Name");
             sb.append(";");
@@ -39,6 +37,7 @@ public class Main {
             sb.append("Discount Price");
             sb.append(';');
             sb.append("Characteristic");
+
             sb.append("\n\nKomputery");
             writer.println(sb.toString());
             itemsComp.stream().limit(100).forEach(writer::println);
@@ -46,13 +45,12 @@ public class Main {
             itemsCosmetic.stream().limit(100).forEach(writer::println);
             writer.println("\nProdukty spozywcze kawa");
             itemsCoffee.stream().limit(100).forEach(writer::println);
+
             System.out.println("Done! The result saved to file: " + path.toString());
 
             writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 }

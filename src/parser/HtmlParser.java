@@ -15,7 +15,7 @@ public interface HtmlParser {
           int index = url.indexOf("&p=");
           if (index != -1) {
                int page = Integer.parseInt(url.substring(index+3));
-               if (page != 100) {
+               if (page <= 100) {
                     result = url.replace("&p="+ page, "&p=" + (page +1));
                } else
                     throw new RuntimeException("You have reached the 100th page");
